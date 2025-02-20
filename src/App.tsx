@@ -1,9 +1,5 @@
 import "./App.css";
-import FormDatePicker from "./components/com/BaseFormItems/DatePicker/FormDatePicker";
-import FormRatioGrop from "./components/com/BaseFormItems/FormRatioGrop/FormRatioGrop";
-import FormSelect from "./components/com/BaseFormItems/FormSelect/FormSelect";
-import FormTextFiled from "./components/com/BaseFormItems/FormTextFiled/FormTextFiled";
-import UseFormGenrate from "./components/com/UseFormGenrate/UseFormGenrate";
+import FormGenerate from "./Pages/FormGenerate/FormGenerate";
 const selects = [
   { value: "1", label: "jems" },
   { value: "2", label: "jeson" },
@@ -22,8 +18,8 @@ const radioGroupItems = [
 ];
 function App() {
   return (
-    <div className="">
-     <UseFormGenrate formType="Login"/>
+    <div className="w-full">
+      <FormGenerate />
     </div>
   );
 }
