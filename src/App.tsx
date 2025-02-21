@@ -1,5 +1,7 @@
 import "./App.css";
 import FormGenerate from "./Pages/FormGenerate/FormGenerate";
+import { BrowserRouter, Route, Routes } from "react-router";
+import Home from "./Pages/Home/Home";
 const selects = [
   { value: "1", label: "jems" },
   { value: "2", label: "jeson" },
@@ -19,7 +21,13 @@ const radioGroupItems = [
 function App() {
   return (
     <div className="w-full">
-      <FormGenerate />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Home/>} path={"/"}  />
+          <Route element={<FormGenerate />} path={"/formGenerate"} />
+        </Routes>
+      </BrowserRouter>
+      
     </div>
   );
 }

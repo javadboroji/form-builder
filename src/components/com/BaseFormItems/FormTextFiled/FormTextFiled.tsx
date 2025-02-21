@@ -19,7 +19,7 @@ const FormTextFiled: React.FC<IProps> = ({
 }) => {
   return (
     <input
-      className={`border-2 border-gray-200 rounded-md py-1 px-2 mx-1 ${classCu}`}
+      className={`border-2 bg-gray-100 focus-visible:outline-blue-200 text-indigo-900  border-gray-200 rounded-[10px] py-3 px-2 mx-1 ${classCu}`}
       {...register(name)}
       type={type}
       name={name}
