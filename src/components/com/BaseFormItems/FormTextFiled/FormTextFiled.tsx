@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "@/components/ui/input";
-import { UseFormRegister } from "react-hook-form";
-
+import { FieldError, UseFormRegister } from "react-hook-form";
+interface errosForm {
+  name: string;
+  type: string;
+  message: string;
+  ref: any;
+}
 interface IProps {
   name: string;
   placeholder: string;
   type: "password" | "text" | "number";
   register: UseFormRegister<any>;
   classCu?: string;
+  validation?: {};
+  error?: errosForm | FieldError;
 }
 
 const FormTextFiled: React.FC<IProps> = ({
@@ -16,15 +23,20 @@ const FormTextFiled: React.FC<IProps> = ({
   type,
   register,
   classCu,
+  validation,
+  error,
 }) => {
   return (
-    <input
-      className={`border-2 bg-gray-100 focus-visible:outline-blue-200 text-indigo-900  border-gray-200 rounded-[10px] py-3 px-2 mx-1 ${classCu}`}
-      {...register(name)}
-      type={type}
-      name={name}
-      placeholder={placeholder}
-    />
+    <div className="flex flex-col w-full">
+      <input
+        className={`border-2 bg-gray-100 focus-visible:outline-blue-200 text-indigo-900  ${error? 'border-red-600':'border-gray-200'} rounded-[10px] py-3 px-2 mx-1 ${classCu}`}
+        {...register(name, validation)}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+      />
+      {error && <p className="text-red-600">{error?.message}</p>}
+    </div>
   );
 };
 

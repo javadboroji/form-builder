@@ -1,7 +1,8 @@
 import FormTextFiled from "@/components/com/BaseFormItems/FormTextFiled/FormTextFiled";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { redirect, useNavigate } from "react-router";
 
 interface IProps {}
 interface Inputs {
@@ -10,17 +11,23 @@ interface Inputs {
   email: string;
 }
 const Sinup: React.FC<IProps> = ({}) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     watch,
+
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) =>{
+    localStorage.setItem("user_test",JSON.stringify(data))
+    navigate("/formGenerate")
+  }
+
   return (
     <div className=" flex justify-center my-3">
       <form
-        className="flex flex-wrap gap-4 w-[35% ] p-4"
+        className="flex flex-wrap gap-4 w-[30% ] p-4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <FormTextFiled
@@ -29,6 +36,8 @@ const Sinup: React.FC<IProps> = ({}) => {
           register={register}
           type="text"
           classCu="w-[70%] mx-auto"
+          validation={{ required: " fristName is required" }}
+          error={errors?.fristName}
         />
         <FormTextFiled
           name="lastName"
@@ -36,6 +45,8 @@ const Sinup: React.FC<IProps> = ({}) => {
           register={register}
           type="text"
           classCu="w-[70%] mx-auto"
+          validation={{ required: " lastName is required" }}
+          error={errors?.lastName}
         />
         <FormTextFiled
           name="email"
@@ -43,14 +54,16 @@ const Sinup: React.FC<IProps> = ({}) => {
           register={register}
           type="text"
           classCu="w-[70%] mx-auto"
+          validation={{ required: " email is required" }}
+          error={errors?.email}
         />
-        <div className="w-full flex justify-end">
+        <div className="w-full flex">
           <Button
-            className="text-green-600 py-1 px-3 border-[1px] rounded-xl"
+            className="text-white mx-auto rounded-[8px]  py-6 px-3 bg-blue-900 hover:bg-blue-900"
             type="submit"
           >
             {" "}
-            Save
+            Im Ready.Lets Build Some Form
           </Button>
         </div>
       </form>
