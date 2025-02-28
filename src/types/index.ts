@@ -12,4 +12,11 @@ export  type TSelectItem = {
     password:string,
     test:string
 }
+export type formItemGenrate={
+  textField_name: string;
+  textField_title: string;
+  type: string;
+  col: string;
+  
+}
 export type TFormType="login"|"register"

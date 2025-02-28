@@ -9,6 +9,7 @@ interface Inputs {
   fristName: string;
   lastName: string;
   email: string;
+  formName:string
 }
 const Sinup: React.FC<IProps> = ({}) => {
   const navigate = useNavigate();
@@ -56,6 +57,15 @@ const Sinup: React.FC<IProps> = ({}) => {
           classCu="w-[70%] mx-auto"
           validation={{ required: " email is required" }}
           error={errors?.email}
+        />
+        <FormTextFiled
+          name="formName"
+          placeholder="formName"
+          register={register}
+          type="text"
+          classCu="w-[70%] mx-auto"
+          validation={{ required: " formName is required" }}
+          error={errors?.formName}
         />
         <div className="w-full flex">
           <Button
