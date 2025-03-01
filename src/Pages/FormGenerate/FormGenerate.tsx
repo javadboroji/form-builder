@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormItems from "./components/FormItems";
 import FormModal from "./components/FormModal";
 import FormGeneratForTextField from "@/Pages/FormGenerate/components/FormGeneratTextField/FormGeneratForTextField";
 import FormResult from "./components/FormResult/FormResult";
+import FormItemTypeSelect from "@/Store/FormItemTypeSelect";
+import FormGenSelect from "./components/FormGenSelect/FormGenSelect";
 
 interface IProps {}
 
 const FormGenerate: React.FC<IProps> = ({}) => {
   const [open, setOpen] = useState(false);
-  const user=JSON.parse(localStorage.getItem("user_test") as string) 
+  const { formType } = FormItemTypeSelect();
+  const user=JSON.parse(localStorage.getItem("user_test") as string) ;
+  useEffect(() => {
+    console.log(formType);
+    
+  }, [formType])
+  
   return (
     <div className="flex w-full">
       <div className="shadow-xl p-2 rounded-lg w-1/6 h-[100dvh]">
@@ -22,7 +30,8 @@ const FormGenerate: React.FC<IProps> = ({}) => {
       </div>
       
       <FormModal open={open} setopen={setOpen}>
-        <FormGeneratForTextField setopen={setOpen}/>
+        {formType==="input"&&<FormGeneratForTextField setopen={setOpen}/>}
+        {formType==="select"&&<FormGenSelect setopen={setOpen}/>}
       </FormModal>
     </div>
   );

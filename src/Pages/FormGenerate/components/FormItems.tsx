@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import FormItemTypeSelect from "@/Store/FormItemTypeSelect";
 import React from "react";
 
 interface IProps {
@@ -28,7 +29,9 @@ const FormItems: React.FC<IProps> = ({ setOpen }) => {
       id: "form_4",
     },
   ];
+  const { setFormType } = FormItemTypeSelect();
   const setFormItem = (type: string) => {
+    setFormType(type);
     setOpen(true);
   };
   return (
