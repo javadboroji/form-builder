@@ -15,10 +15,12 @@ const FormGenerate: React.FC<IProps> = ({}) => {
         <h2 className="text-yellow-500 text-3xl"> Form Items</h2>
         <FormItems setOpen={setOpen} />
       </div>
+
       <div className=" p-2 flex flex-col w-full">
         <h1 className="text-2xl"> Form: <span className="text-green-700">{user?.formName}</span></h1>
         <FormResult/>
       </div>
+      
       <FormModal open={open} setopen={setOpen}>
         <FormGeneratForTextField setopen={setOpen}/>
       </FormModal>

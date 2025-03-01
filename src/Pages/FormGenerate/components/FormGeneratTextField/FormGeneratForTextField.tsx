@@ -1,6 +1,7 @@
 import FormSelect from "@/components/com/BaseFormItems/FormSelect/FormSelect";
 import FormTextFiled from "@/components/com/BaseFormItems/FormTextFiled/FormTextFiled";
 import { Button } from "@/components/ui/button";
+import useFormDb from "@/Store/FormDB";
 import { TSelectItem } from "@/types";
 import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -15,7 +16,7 @@ type Inputs = {
   col: string;
 };
 
-const FormGeneratForTextField: React.FC<IProps> = ({setopen}) => {
+const FormGeneratForTextField: React.FC<IProps> = ({ setopen }) => {
   //option
   const optionsFormCol: TSelectItem[] = [
     { label: "col-3", value: "3" },
@@ -28,20 +29,19 @@ const FormGeneratForTextField: React.FC<IProps> = ({setopen}) => {
     { label: "text", value: "text" },
     { label: "password", value: "password" },
   ];
+  // useform config
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const [formDb, setFormDb] = useState<Inputs[]>([]);
+  //Submit and store
+  const { setFormDb } = useFormDb();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    setFormDb((prev) => [...prev, { ...data, type: "textField" }]);
-    setopen(false)
+    setFormDb({ ...data, type: "textField" });
+    setopen(false);
   };
-  useEffect(() => {
-    localStorage.setItem("form_db", JSON.stringify(formDb));
-  }, [formDb]);
 
   return (
     <div className="flex flex-col w-full ">
