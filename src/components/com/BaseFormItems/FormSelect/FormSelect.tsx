@@ -25,28 +25,14 @@ const FormSelect: React.FC<IProps> = ({
   register,
 }) => {
   return (
-    // <Select name={name}>
-    //   <SelectTrigger className="w-[180px]">
-    //     <SelectValue placeholder={placeholder} />
-    //   </SelectTrigger>
-    //   <SelectContent>
-    //     {SelectItems?.map((item) => {
-    //       return (
-    //         <SelectItem key={item.value} value={item.value}>
-    //           {item.label}
-    //         </SelectItem>
-    //       );
-    //     })}
-    //   </SelectContent>
-    // </Select>
     <>
       {placeholder && <label htmlFor={name}>{placeholder}</label>}
       <select
-        className={`p-2 min-w-[10rem] border-[1px] mx-1 border-gray-400 rounded-md  ${classCu}`}
+        className={`p-3 min-w-[10rem] border-[1px] mx-1 border-gray-200 rounded-[8px]  ${classCu}`}
         {...register(name)}
       >
         {SelectItems?.map((item) => {
-          return <option value={item.value}> {item.label}</option>;
+          return <option className="p-2 text-lg focus-visible:!border-gray-100    border-gray-50 hover:bg-gray-100" value={item.value}> {item.label}</option>;
         })}
       </select>
     </>

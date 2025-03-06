@@ -17,6 +17,7 @@ export type formItemGenrate={
   textField_title: string;
   type: string;
   col: string;
+  options?:TSelectItem[]
   
 }
 export type TFormType="login"|"register"

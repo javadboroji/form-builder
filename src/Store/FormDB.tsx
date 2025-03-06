@@ -1,9 +1,11 @@
+import { TSelectItem } from "@/types";
 import { create } from "zustand";
 interface formDb {
   textField_name: string;
   textField_title: string;
   type: string;
   col: string;
+  options?: TSelectItem[];
 }
 interface IuseFormDb {
   formData: formDb[];

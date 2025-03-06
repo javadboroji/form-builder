@@ -1,3 +1,4 @@
+import FormSelect from "@/components/com/BaseFormItems/FormSelect/FormSelect";
 import FormTextFiled from "@/components/com/BaseFormItems/FormTextFiled/FormTextFiled";
 import { Button } from "@/components/ui/button";
 import useFormDb from "@/Store/FormDB";
@@ -7,7 +8,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 export default function FormResult() {
   const { formData } = useFormDb();
-  useEffect(() => {}, [formData]);
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
   //* useFoem Config
   const {
     register,
@@ -22,7 +25,7 @@ export default function FormResult() {
   return (
     <div className="w-full shadow-lg p-2 my-3">
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-wrap ">
+        <div className="flex flex-wrap  items-center gap-1">
           {formData?.map((item: formItemGenrate) => {
             return item.type === "textField" ? (
               <div
@@ -40,6 +43,23 @@ export default function FormResult() {
                   register={register}
                   type="text"
                   classCu="my-2"
+                />
+              </div>
+            ) : item.type === "select" ? (
+              <div
+                className={`${
+                  item.col === "3"
+                    ? "w-1/3"
+                    : item.col === "6"
+                    ? "w-1/2"
+                    : "w-full"
+                }`}
+              >
+                <FormSelect
+                  register={register}
+                  name={item.textField_name}
+                  SelectItems={item?.options || []}
+                  classCu="my-2 w-full"
                 />
               </div>
             ) : null;
