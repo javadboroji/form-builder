@@ -25,15 +25,15 @@ export default function FormResult() {
   return (
     <div className="w-full shadow-lg p-2 my-3">
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-wrap  items-center gap-1">
+        <div className="flex flex-wrap  items-center">
           {formData?.map((item: formItemGenrate) => {
             return item.type === "textField" ? (
               <div
-                className={`${
+                className={` mx-0.5 px-1 ${
                   item.col === "3"
-                    ? "w-1/3"
+                    ? "w-[33%]"
                     : item.col === "6"
-                    ? "w-1/2"
+                    ? "w-[49.5%]"
                     : "w-full"
                 }`}
               >
@@ -47,11 +47,11 @@ export default function FormResult() {
               </div>
             ) : item.type === "select" ? (
               <div
-                className={`${
+                className={`mx-0.5 px-1 ${
                   item.col === "3"
-                    ? "w-1/3"
+                    ? "w-[33%]"
                     : item.col === "6"
-                    ? "w-1/2"
+                    ? "w-[49.5%]"
                     : "w-full"
                 }`}
               >

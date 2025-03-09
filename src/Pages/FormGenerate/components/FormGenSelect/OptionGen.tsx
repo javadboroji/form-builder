@@ -21,7 +21,7 @@ function OptionGen() {
             .map((item) => ({ value: item.trim(), label: item.trim() }))
         );
       }
-    }, 2000);
+    }, 500);
     return () => clearTimeout(handler);
   }, [inputValue]);
 
