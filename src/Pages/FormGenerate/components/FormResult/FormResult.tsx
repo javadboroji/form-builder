@@ -1,3 +1,5 @@
+import FormDatePic from "@/components/com/BaseFormItems/DatePicker/FormDatePick";
+import FormDatePicker from "@/components/com/BaseFormItems/DatePicker/FormDatePicker";
 import FormSelect from "@/components/com/BaseFormItems/FormSelect/FormSelect";
 import FormTextFiled from "@/components/com/BaseFormItems/FormTextFiled/FormTextFiled";
 import { Button } from "@/components/ui/button";
@@ -59,6 +61,22 @@ export default function FormResult() {
                   register={register}
                   name={item.textField_name}
                   SelectItems={item?.options || []}
+                  classCu="my-2 w-full"
+                />
+              </div>
+            ) : item.type === "date" ? (
+              <div
+                className={`mx-0.5 px-1 ${
+                  item.col === "3"
+                    ? "w-[33%]"
+                    : item.col === "6"
+                    ? "w-[49.5%]"
+                    : "w-full"
+                }`}
+              >
+                <FormDatePic
+                  register={register}
+                  name={item.textField_name}
                   classCu="my-2 w-full"
                 />
               </div>

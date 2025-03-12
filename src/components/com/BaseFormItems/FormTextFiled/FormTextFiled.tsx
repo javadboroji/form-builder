@@ -31,8 +31,8 @@ const FormTextFiled: React.FC<IProps> = ({
       <input
         className={`border-2 bg-gray-100 focus-visible:outline-blue-200 text-indigo-900  ${error? 'border-red-600':'border-gray-200'} rounded-[10px] py-3 px-2  ${classCu}`}
         {...register(name, validation)}
-        type={type}
         name={name}
+        type={type}
         placeholder={placeholder}
       />
       {error && <p className="text-red-600">{error?.message}</p>}

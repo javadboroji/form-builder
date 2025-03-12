@@ -5,18 +5,18 @@ import FormGeneratForTextField from "@/Pages/FormGenerate/components/FormGenerat
 import FormResult from "./components/FormResult/FormResult";
 import FormItemTypeSelect from "@/Store/FormItemTypeSelect";
 import FormGenSelect from "./components/FormGenSelect/FormGenSelect";
+import FormGenDate from "./components/FormGenerateDate/FormGenDate";
 
 interface IProps {}
 
 const FormGenerate: React.FC<IProps> = ({}) => {
   const [open, setOpen] = useState(false);
   const { formType } = FormItemTypeSelect();
-  const user=JSON.parse(localStorage.getItem("user_test") as string) ;
+  const user = JSON.parse(localStorage.getItem("user_test") as string);
   useEffect(() => {
     console.log(formType);
-    
-  }, [formType])
-  
+  }, [formType]);
+
   return (
     <div className="flex w-full">
       <div className="shadow-xl p-2 rounded-lg w-1/6 h-[100dvh]">
@@ -25,13 +25,17 @@ const FormGenerate: React.FC<IProps> = ({}) => {
       </div>
 
       <div className=" p-2 flex flex-col w-full">
-        <h1 className="text-2xl"> Form: <span className="text-green-700">{user?.formName}</span></h1>
-        <FormResult/>
+        <h1 className="text-2xl">
+          {" "}
+          Form: <span className="text-green-700">{user?.formName}</span>
+        </h1>
+        <FormResult />
       </div>
-      
+
       <FormModal open={open} setopen={setOpen}>
-        {formType==="input"&&<FormGeneratForTextField setopen={setOpen}/>}
-        {formType==="select"&&<FormGenSelect setopen={setOpen}/>}
+        {formType === "input" && <FormGeneratForTextField setopen={setOpen} />}
+        {formType === "select" && <FormGenSelect setopen={setOpen} />}
+        {formType === "date" && <FormGenDate setopen={setOpen} />}
       </FormModal>
     </div>
   );
