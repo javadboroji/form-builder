@@ -32,7 +32,7 @@ const FormSelect: React.FC<IProps> = ({
         {...register(name)}
       >
         {SelectItems?.map((item) => {
-          return <option className="p-2 text-lg focus-visible:!border-gray-100    border-gray-50 hover:bg-gray-100" value={item.value}> {item.label}</option>;
+          return <option className="p-2 text-lg focus-visible:!border-gray-100 border-gray-50 hover:bg-gray-100" value={item.value}>{item.label}</option>;
         })}
       </select>
     </>

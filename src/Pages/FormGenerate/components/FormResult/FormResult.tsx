@@ -1,10 +1,11 @@
-import { Button } from "@/components/ui/button";
 import useFormDb from "@/Store/FormDB";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useFormResultMidlware from "../../hooks/useFormResultMidlware";
 import FormResultAction from "./FormResultAction";
 import FormResultJson from "./FormResultJson";
+import PreviewCod from "./PreviewCod";
+import useGenComponentToString from "../../hooks/useGenComponentToString";
 const FormResult = <T,>() => {
   const { formData } = useFormDb();
 
@@ -17,11 +18,13 @@ const FormResult = <T,>() => {
     data: formData,
     register: register,
   });
-
+  useGenComponentToString({ data: formData, register: register });
   //*Submit Form
   const onSubmit = <T,>(data: T) => {
     setData(data);
   };
+  console.log(ComponentResult, "**");
+
   return (
     <div className="w-full flex justify-center flex-col items-center shadow-lg p-2 my-3">
       <form
@@ -33,6 +36,9 @@ const FormResult = <T,>() => {
         <FormResultAction />
       </form>
       <FormResultJson data={JSON.stringify(data)} />
+      <div className="w-full">
+        <PreviewCod result={ComponentResult} />
+      </div>
     </div>
   );
 };

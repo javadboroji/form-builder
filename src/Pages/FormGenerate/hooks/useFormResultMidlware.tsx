@@ -11,7 +11,7 @@ interface IFormResultMidlware {
 }
 
 const useFormResultMidlware = ({ data, register }: IFormResultMidlware) => {
- 
+    
   const renderComponent = (type: string, data: formDb) => {
     switch (type) {
       case "textField":
