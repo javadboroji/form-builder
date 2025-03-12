@@ -1,99 +1,56 @@
-import FormDatePic from "@/components/com/BaseFormItems/DatePicker/FormDatePick";
-import FormDatePicker from "@/components/com/BaseFormItems/DatePicker/FormDatePicker";
-import FormSelect from "@/components/com/BaseFormItems/FormSelect/FormSelect";
-import FormTextFiled from "@/components/com/BaseFormItems/FormTextFiled/FormTextFiled";
+
 import { Button } from "@/components/ui/button";
 import useFormDb from "@/Store/FormDB";
-import { formItemGenrate } from "@/types";
 import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import useFormResultMidlware from "../../hooks/useFormResultMidlware";
 
-export default function FormResult() {
+const FormResult = <T,>() => {
   const { formData } = useFormDb();
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+
+  const [data, setData] = useState<T>({} as T);
+
   //* useFoem Config
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<any>();
+  const { register, handleSubmit } = useForm<any>();
+
+  const { ComponentResult } = useFormResultMidlware({
+    data: formData,
+    register: register,
+  });
+
   //*Submit Form
-  const onSubmit: SubmitHandler<any> = (data: any) => {
-    console.log(data);
+  const onSubmit = <T,>(data: T) => {
+    setData(data);
   };
   return (
-    <div className="w-full shadow-lg p-2 my-3">
-      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+    <div className="w-full flex justify-center flex-col items-center shadow-lg p-2 my-3">
+      <form
+        className="flex flex-col w-[80%] border-[1px] border-gray-200 p-3 rounded-xl"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="flex flex-wrap  items-center">
-          {formData?.map((item: formItemGenrate) => {
-            return item.type === "textField" ? (
-              <div
-                className={` mx-0.5 px-1 ${
-                  item.col === "3"
-                    ? "w-[33%]"
-                    : item.col === "6"
-                    ? "w-[49.5%]"
-                    : "w-full"
-                }`}
-              >
-                <FormTextFiled
-                  name={item.textField_name}
-                  placeholder={item.textField_title}
-                  register={register}
-                  type="text"
-                  classCu="my-2"
-                />
-              </div>
-            ) : item.type === "select" ? (
-              <div
-                className={`mx-0.5 px-1 ${
-                  item.col === "3"
-                    ? "w-[33%]"
-                    : item.col === "6"
-                    ? "w-[49.5%]"
-                    : "w-full"
-                }`}
-              >
-                <FormSelect
-                  register={register}
-                  name={item.textField_name}
-                  SelectItems={item?.options || []}
-                  classCu="my-2 w-full"
-                />
-              </div>
-            ) : item.type === "date" ? (
-              <div
-                className={`mx-0.5 px-1 ${
-                  item.col === "3"
-                    ? "w-[33%]"
-                    : item.col === "6"
-                    ? "w-[49.5%]"
-                    : "w-full"
-                }`}
-              >
-                <FormDatePic
-                  register={register}
-                  name={item.textField_name}
-                  classCu="my-2 w-full"
-                />
-              </div>
-            ) : null;
-          })}
+         
+          {ComponentResult}
         </div>
 
-        <div className="w-full my-2">
+        <div className="w-full flex justify-end my-2">
           <Button
-            className="text-green-600 py-2 px-8 border-[1px] rounded-xl"
+            className="text-green-600 py-6 px-8 border-[1px] rounded-xl text-xl"
             type="submit"
           >
             {" "}
-            Save
+            Test
+          </Button>
+          <Button className="text-white text-xl  px-8 mx-4 py-6 rounded-xl bg-blue-900 hover:bg-blue-900">
+            SaveForm
           </Button>
         </div>
       </form>
+      <div className="w-full  p-2 my-3">
+        <h1 className="text-orange-500 text-3xl p-2"> Form Result</h1>
+        {data && JSON.stringify(data)}
+      </div>
     </div>
   );
-}
+};
+export default FormResult;

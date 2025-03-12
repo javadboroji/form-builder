@@ -1,6 +1,6 @@
 import { TSelectItem } from "@/types";
 import { create } from "zustand";
-interface formDb {
+export interface formDb {
   textField_name: string;
   textField_title: string;
   type: string;
