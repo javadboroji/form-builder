@@ -22,7 +22,7 @@ const FormDatePic: React.FC<IProps> = ({
   validation,
 }) => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-[90%] px-4">
     
       <input
         type="date"

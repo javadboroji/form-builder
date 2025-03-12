@@ -2,8 +2,7 @@ import FormDatePic from "@/components/com/BaseFormItems/DatePicker/FormDatePick"
 import FormSelect from "@/components/com/BaseFormItems/FormSelect/FormSelect";
 import FormTextFiled from "@/components/com/BaseFormItems/FormTextFiled/FormTextFiled";
 import { formDb } from "@/Store/FormDB";
-import { ReactNode, useEffect } from "react";
-import { useForm, UseFormRegister } from "react-hook-form";
+import {  UseFormRegister } from "react-hook-form";
 import WrapFormItemDiv from "../components/FormResult/WrapFormItemDiv";
 
 interface IFormResultMidlware {
