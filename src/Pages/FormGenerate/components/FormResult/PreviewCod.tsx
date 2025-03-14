@@ -28,12 +28,12 @@ const PreviewCod: React.FC<IProps> = ({ result }) => {
             whiteSpace: "pre-wrap",
             textAlignLast: "left",
           }}
-          className="border p-2 rounded-md bg-white"
+          className=" p-2 rounded-md bg-white"
         />
         {/* نمایش خروجی کد */}
-        <div className=" p-4 mt-2">
+        {/* <div className=" p-4 mt-2">
           <LivePreview />
-        </div>
+        </div> */}
         {/* نمایش ارورها */}
         <LiveError className="text-red-500 mt-2" />
       </div>
